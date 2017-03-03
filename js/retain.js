@@ -20,7 +20,8 @@ $(function(){
     var octopus = {
         addNewNote: function(noteStr) {
             model.add({
-                content: noteStr
+                content: noteStr,
+                submitDate: Date.now()
             });
             view.render();
         },
@@ -52,7 +53,8 @@ $(function(){
             var htmlStr = '';
             octopus.getNotes().forEach(function(note){
                 htmlStr += '<li class="note">'+
-                        note.content +
+                        note.content + 
+                        '<div class="note-date">' + new Date(note.submitDate).toString() + '</div>' +
                     '</li>';
             });
             this.noteList.html( htmlStr );
